@@ -21,3 +21,7 @@ vim.keymap.set("n", "<RightMouse>", function()
 end, {})
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+
+-- map("n", "<Space>e", "<cmd>NvimTreeToggle<CR>", { desc = "toggle nvimtree" })
+-- map("n", "<Space>h", "<cmd>ToggleTerm direction=float<CR>", { desc = "floating terminal" })
+

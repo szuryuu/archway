@@ -22,7 +22,7 @@
 "margin-right": 8,
 
 "modules-left": [
-	//"idle_inhibitor",
+	"idle_inhibitor",
 	//"custom/separator#blank",
 	"clock",
 	"custom/separator#blank",

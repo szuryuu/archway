@@ -22,13 +22,13 @@
 "margin-right": 8,
 
 "modules-left": [
-	//"idle_inhibitor",
+	"idle_inhibitor",
 	//"custom/separator#blank",
 	"clock",
         "custom/separator#dot-blank",	
 	"tray",
         "custom/separator#blank",	
-        "hyprland/workspaces#alpha",
+        "hyprland/workspaces#number",
 	],
 
 "modules-center": [
