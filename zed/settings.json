@@ -7,14 +7,30 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "lsp": {
+    "wakatime": {
+      "initialization_options": {
+        "api-key": ""
+      }
+    }
+  },
+  "languages": {
+    "PHP": {
+      "language_servers": ["intelephense", "!phpactor"]
+    }
+  },
+  "agent": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4.1"
+    },
+    "model_parameters": []
+  },
   "vim_mode": true,
   "icon_theme": "Zed (Default)",
   "ui_font_size": 16,
   "buffer_font_family": "Monocraft",
+  "buffer_font_fallbacks": ["Zen Old Mincho"],
   "buffer_font_size": 16,
-  "theme": {
-    "mode": "dark",
-    "light": "One Light",
-    "dark": "Tokyo Night"
-  }
+  "theme": "Tokyo Night"
 }
