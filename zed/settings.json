@@ -10,13 +10,13 @@
   "lsp": {
     "wakatime": {
       "initialization_options": {
-        "api-key": ""
+        "api-key": "your_api"
       }
     }
   },
   "languages": {
     "PHP": {
-      "language_servers": ["intelephense", "!phpactor"]
+      "language_servers": ["!intelephense", "phpactor"]
     }
   },
   "agent": {
