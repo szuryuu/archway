@@ -1,7 +1,7 @@
 -- The setup config table shows all available config options with their default values:
 require("neocord").setup({
     -- General options
-    logo                = "https://avatars.githubusercontent.com/u/40540262?v=4",                     -- "auto" or url
+    logo                = "https://avatars.githubusercontent.com/u/109564343?v=4",                     -- "auto" or url
     logo_tooltip        = "vscode killers!",                        -- nil or string
     main_image          = "logo",                 -- "language" or "logo"
     client_id           = "1157438221865717891",      -- Use your own Discord application client id (not recommended)
