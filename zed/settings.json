@@ -10,7 +10,7 @@
   "lsp": {
     "wakatime": {
       "initialization_options": {
-        "api-key": "YOUR_API"
+        "api-key": "API_KEY"
       }
     }
   },
