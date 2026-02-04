@@ -6,34 +6,56 @@ M.stbufnr = function()
   return vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)
 end
 
--- add yours here!
-
 local o = vim.o
-o.cursorlineopt = "both" -- to enable cursorline!
-o.background = "dark"
-vim.opt.relativenumber = true
+local opt = vim.opt
 
+-- --- RONIN CORE OPTIONS ---
+o.cursorlineopt = "both"
+o.background = "dark"
+opt.relativenumber = true
+o.laststatus = 3 -- Global statusline (Void Style)
+
+-- FIX: Gunakan 'opt' bukan 'o' karena nilainya adalah Table
+opt.fillchars = { eob = " " } 
+
+o.cursorline = true
+
+-- --- RONIN PALETTE (VOID & BLOOD) ---
+local colors = {
+  void    = "#050505", -- Main Background
+  module  = "#111111", -- Module Background
+  text    = "#e0e0e0",
+  dim     = "#444444",
+  blood   = "#b30000", -- Main Accent (Red)
+  gold    = "#ccaa00", -- Secondary Accent
+  warn    = "#e5c07b",
+  info    = "#61afef",
+  hint    = "#98c379",
+}
 
 local highlights = {
-  Normal          = { fg = "#f4f4f4", bg = "#141b1e" },
-  Separator       = { fg = "#232a2d", bg = "#141b1e" },
-  Separator2      = { fg = "#3a435a", bg = "#232a2d" },
-  ModeText        = { fg = "#956dca", bg = "#232a2d" },
-  PathText        = { fg = "#956dca", bg = "#232a2d" },
-  FileText        = { fg = "#f4f3ee", bg = "#232a2d" },
-  FileType        = { fg = "#e37e4f", bg = "#232a2d" },
-  BranchName      = { fg = "#69bfce", bg = "#232a2d" },
-  LineText        = { fg = "#e34f4f", bg = "#232a2d" },
-  ColumnText      = { fg = "#5679e3", bg = "#232a2d" },
-  PercentageText  = { fg = "#5599e2", bg = "#232a2d" },
-  TotalLineText   = { fg = "#956dca", bg = "#232a2d" },
-  DiagnosticsText = { fg = "#67b0e8", bg = "#232a2d" },
-  LSPColor        = { fg = "#8ccf7e", bg = "#232a2d" },
+  Normal          = { fg = colors.text, bg = colors.void },
+  Separator       = { fg = colors.module, bg = colors.void }, 
+  Separator2      = { fg = colors.dim, bg = colors.module },
+  
+  ModeText        = { fg = colors.blood, bg = colors.module, bold = true },
+  PathText        = { fg = colors.text, bg = colors.module, bold = true },
+  FileText        = { fg = colors.text, bg = colors.module },
+  FileType        = { fg = colors.blood, bg = colors.module, bold = true },
+  
+  BranchName      = { fg = colors.gold, bg = colors.module, bold = true },
+  LineText        = { fg = colors.blood, bg = colors.module },
+  ColumnText      = { fg = colors.text, bg = colors.module },
+  PercentageText  = { fg = colors.text, bg = colors.module },
+  TotalLineText   = { fg = colors.dim, bg = colors.module },
+  
+  DiagnosticsText = { fg = colors.dim, bg = colors.module },
+  LSPColor        = { fg = colors.gold, bg = colors.module, bold = true },
 
-  DiagError       = { fg = "#e06c75", bg = "#232a2d" },
-  DiagWarn        = { fg = "#e5c07b", bg = "#232a2d" },
-  DiagInfo        = { fg = "#61afef", bg = "#232a2d" },
-  DiagHint        = { fg = "#98c379", bg = "#232a2d" },
+  DiagError       = { fg = colors.blood, bg = colors.module },
+  DiagWarn        = { fg = colors.warn, bg = colors.module },
+  DiagInfo        = { fg = colors.info, bg = colors.module },
+  DiagHint        = { fg = colors.hint, bg = colors.module },
 }
 
 for group, opts in pairs(highlights) do
@@ -43,14 +65,14 @@ end
 _G.RecolorMode = function()
   local mode = vim.fn.mode()
   local color_map = {
-    n     = { fg = "#5599e2", bg = "#232a2d" },
-    i     = { fg = "#e34f4f", bg = "#232a2d" },
-    R     = { fg = "#69bfce", bg = "#141b1e" },
-    v     = { fg = "#e37e4f", bg = "#232a2d" },
-    V     = { fg = "#e37e4f", bg = "#141b1e" },
-    ["V"] = { fg = "#e37e4f", bg = "#141b1e" },
-    c     = { fg = "#5679e3", bg = "#232a2d" },
-    t     = { fg = "#5679e3", bg = "#141b1e" },
+    n     = { fg = colors.blood, bg = colors.module }, 
+    i     = { fg = "#ffffff", bg = colors.module },    
+    R     = { fg = colors.gold, bg = colors.module },  
+    v     = { fg = "#ff5555", bg = colors.module },    
+    V     = { fg = "#ff5555", bg = colors.module },
+    ["\22"] = { fg = "#ff5555", bg = colors.module },
+    c     = { fg = colors.text, bg = colors.module },
+    t     = { fg = colors.text, bg = colors.module },
   }
 
   local hl = color_map[mode]
@@ -83,7 +105,7 @@ end
 
 _G.git = function()
   if not vim.b[M.stbufnr()].gitsigns_head or vim.b[M.stbufnr()].gitsigns_git_status then
-    return " no repo"
+    return ""
   end
 
   local git_status = vim.b[M.stbufnr()].gitsigns_status_dict
@@ -98,7 +120,7 @@ end
 
 _G.diagnostics_color = function()
   if not rawget(vim, "lsp") then
-    return "%#DiagnosticsText#󰞇 %*"
+    return "%#DiagnosticsText# %*"
   end
 
   local err = #vim.diagnostic.get(M.stbufnr(), { severity = vim.diagnostic.severity.ERROR })
@@ -107,23 +129,15 @@ _G.diagnostics_color = function()
   local hints = #vim.diagnostic.get(M.stbufnr(), { severity = vim.diagnostic.severity.HINT })
 
   local parts = {}
-  if err > 0 then
-    table.insert(parts, "%#DiagError# " .. err .. " %*")
-  end
-  if warn > 0 then
-    table.insert(parts, "%#DiagWarn# " .. warn .. " %*")
-  end
-  if info > 0 then
-    table.insert(parts, "%#DiagInfo#󰋼 " .. info .. " %*")
-  end
-  if hints > 0 then
-    table.insert(parts, "%#DiagHint#󰛩 " .. hints .. " %*")
-  end
+  if err > 0 then table.insert(parts, "%#DiagError# " .. err .. " %*") end
+  if warn > 0 then table.insert(parts, "%#DiagWarn# " .. warn .. " %*") end
+  if info > 0 then table.insert(parts, "%#DiagInfo#󰋼 " .. info .. " %*") end
+  if hints > 0 then table.insert(parts, "%#DiagHint#󰛩 " .. hints .. " %*") end
 
   if #parts == 0 then
-    return "%#DiagnosticsText#󰞇 %*"
+    return "%#DiagnosticsText# %*"
   else
-    return table.concat(parts, "")
+    return table.concat(parts, " ")
   end
 end
 
@@ -131,53 +145,50 @@ _G.lsp = function()
   if rawget(vim, "lsp") then
     for _, client in ipairs(vim.lsp.get_clients()) do
       if client.attached_buffers[M.stbufnr()] then
-        return (vim.o.columns > 100 and "   LSP ~ " .. client.name .. " ") or "   LSP "
+        return "   " .. client.name .. " "
       end
     end
   end
-
   return ""
 end
 
 _G.HandleColumnGap = function()
-  local col = vim.fn.col(".")
-  return col > 9 and " " or " "
+  return " "
 end
 
+-- STATUSLINE LAYOUT (VOID STYLE)
 vim.opt.statusline = table.concat({
   "%{%v:lua.RecolorMode()%}",
 
+  -- Left Module (Mode)
   "%#Separator#█",
   "%#ModeText#",
-  "%#Separator#██",
+  "%#Separator#█ ",
 
-  "%#PathText#%{expand('%:p:h:t')}",
-  "%#Separator#██",
+  -- File Info
+  "%#Separator#█",
+  "%#PathText#%{expand('%:t')}", -- Short filename only (cleaner)
+  "%#Separator#█ ",
+
+  -- Middle (Diagnostics)
   "%{%v:lua.diagnostics_color()%}",
-  "%#Separator#",
 
-  "%=",
+  "%=", -- Spacer
 
-  "%#Separator#",
+  -- Right Modules
+  "%#Separator#█",
   "%#FileType#%{v:lua.file()}",
-  "%#Separator# ",
+  "%#Separator#█ ",
 
-  "%#Separator#",
+  "%#Separator#",
   "%#BranchName#%{v:lua.git()}",
-  "%#Separator# ",
+  "%#Separator# ",
 
-  "%#Separator#",
+  "%#Separator#█",
   "%#LSPColor#%{v:lua.lsp()}",
-  "%#Separator#█",
-  "%#BranchName#%{v:lua.HandleColumnGap()}",
-  "%#ColumnText#%2c",
-
-  "%#Separator2#",
-  "%#Separator#██",
-  "%#PercentageText#%p%%",
-  "%#Separator#█",
-  "%#Separator2#",
-  "%#Separator#█",
-  "%#TotalLineText#%L",
+  "%#Separator2#|",
+  "%#ColumnText# Ln %l, Col %c ",
+  "%#Separator2#|",
+  "%#PercentageText# %p%% ",
   "%#Separator#█",
 })
