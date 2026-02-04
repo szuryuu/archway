@@ -63,11 +63,16 @@
     "hyprland/workspaces": {
         "format": "{icon}",
         "format-icons": {
-            "1": "一",
-            "2": "二",
-            "3": "三",
-            "4": "四",
-            "5": "五"
+            "1": "一", // Ichi
+            "2": "二", // Ni
+            "3": "三", // San
+            "4": "四", // Shi
+            "5": "五", // Go
+            "6": "六", // Roku
+            "7": "七", // Shichi
+            "8": "八", // Hachi
+            "9": "九", // Kyu
+            "10": "十" // Ju
         },
         "persistent-workspaces": {
             "*": 5
