@@ -1,6 +1,266 @@
-/* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
-/* swaync colors - wallust from waybar.css */
+/* =========================
+   COLOR SYSTEM
+========================= */
 
-@import '../../.config/waybar/colors.css';
-@import 'themes/control_center.css';
-@import 'themes/notifications.css';
+@define-color cc-bg #050505;
+@define-color notif-bg #0a0a0a;
+@define-color surface #111111;
+
+@define-color text-color #e0e0e0;
+@define-color text-dim rgba(224, 224, 224, 0.75);
+
+@define-color accent #86d1e9;
+@define-color accent-alt #445544;
+
+@define-color border-soft rgba(134, 209, 233, 0.15);
+@define-color border-strong rgba(134, 209, 233, 0.4);
+
+@define-color shadow rgba(0, 0, 0, 0.6);
+
+
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+    font-family: "JetBrainsMono Nerd Font", monospace;
+}
+
+
+/* =========================
+   CONTROL CENTER
+========================= */
+
+.control-center {
+    background: @cc-bg;
+    border: 1px solid @border-strong;
+    border-radius: 16px;
+    padding: 15px;
+    box-shadow: 0 20px 40px @shadow;
+    backdrop-filter: blur(12px);
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.widget-title {
+    color: @accent;
+    background: @notif-bg;
+    padding: 6px 12px;
+    margin: 10px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.widget-title > button {
+    background: transparent;
+    color: @text-color;
+    border: none;
+    box-shadow: none;
+}
+
+.widget-title > button:hover {
+    background: @accent;
+    color: #000000;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+
+/* =========================
+   DND SWITCH
+========================= */
+
+.widget-dnd {
+    background: @surface;
+    margin: 10px;
+    border-radius: 12px;
+    padding: 8px;
+    border: 1px solid @border-soft;
+}
+
+.widget-dnd > switch {
+    background: @cc-bg;
+    border: 1px solid @border-soft;
+    border-radius: 10px;
+}
+
+.widget-dnd > switch:checked {
+    background: @accent;
+    border: 1px solid @accent;
+}
+
+.widget-dnd > switch slider {
+    background: @text-color;
+    border-radius: 10px;
+}
+
+
+/* =========================
+   LABEL
+========================= */
+
+.widget-label {
+    margin: 10px;
+}
+
+.widget-label > label {
+    color: @text-color;
+    font-size: 1rem;
+}
+
+
+/* =========================
+   MPRIS
+========================= */
+
+.widget-mpris {
+    background: @surface;
+    padding: 12px;
+    margin: 10px;
+    border-radius: 14px;
+    border: 1px solid @border-soft;
+}
+
+.widget-mpris-player {
+    padding: 6px;
+    margin: 6px;
+}
+
+.widget-mpris-title {
+    font-weight: 600;
+    color: @accent;
+}
+
+.widget-mpris-subtitle {
+    font-size: 0.85rem;
+    color: @text-dim;
+}
+
+
+/* =========================
+   QUICK BUTTONS
+========================= */
+
+.widget-buttons-grid {
+    padding: 12px;
+    margin: 10px;
+    background: @surface;
+    border-radius: 14px;
+    border: 1px solid @border-soft;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button {
+    background: @cc-bg;
+    color: @accent;
+    border: 1px solid @border-soft;
+    border-radius: 10px;
+    margin: 6px;
+    padding: 10px;
+    transition: all 0.2s ease;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+    background: @accent;
+    color: #000000;
+    border: 1px solid @accent;
+}
+
+
+/* =========================
+   NOTIFICATIONS
+========================= */
+
+.notification-row {
+    outline: none;
+    margin: 6px;
+}
+
+.notification {
+    background: @surface;
+    border: 1px solid @border-soft;
+    border-radius: 14px;
+    margin: 8px 0;
+    padding: 0;
+    transition: all 0.2s ease;
+}
+
+.notification:hover {
+    background: #151515;
+    border: 1px solid @border-strong;
+}
+
+.notification-content {
+    background: transparent;
+    padding: 12px;
+}
+
+.notification-default-action {
+    margin: 0;
+    padding: 0;
+    border-radius: 14px;
+}
+
+
+/* =========================
+   TEXT HIERARCHY
+========================= */
+
+.summary {
+    color: @accent;
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+
+.body {
+    color: @text-dim;
+}
+
+.time {
+    color: @accent-alt;
+    font-size: 0.8rem;
+}
+
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.notification-action {
+    background: transparent;
+    color: @accent;
+    border: 1px solid @border-strong;
+    border-radius: 8px;
+    padding: 6px 12px;
+    margin: 6px 4px 8px 4px;
+    transition: all 0.2s ease;
+}
+
+.notification-action:hover {
+    background: @accent;
+    color: #000000;
+}
+
+/* =========================
+   PROGRESS / VOLUME BAR
+========================= */
+
+progressbar {
+    min-height: 5px;
+    border-radius: 8px;
+}
+
+progressbar trough {
+    background: @border-soft;
+    border-radius: 8px;
+}
+
+progressbar progress {
+    background: @accent;
+    border-radius: 8px;
+    transition: all 0.15s ease;
+}
+
