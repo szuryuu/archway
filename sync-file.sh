@@ -1,6 +1,6 @@
 #!/bin/bash
 
-files=("hypr" "cava" "fastfetch" "kitty" "matugen" "rofi" "swaync" "waybar" "wlogout" "zed" "nvim" "spicetify")
+files=("hypr" "cava" "fastfetch" "kitty" "matugen" "rofi" "swaync" "waybar" "wlogout" "zed" "nvim" "spicetify" "hyprswitch")
 
 for item in "${files[@]}"; do
 	rsync -av --delete ~/.config/"$item"/ "$item"/
