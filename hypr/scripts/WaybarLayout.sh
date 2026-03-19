@@ -24,6 +24,14 @@ menu() {
 # Apply selected configuration
 apply_config() {
     ln -sf "$waybar_layouts/$1" "$waybar_config"
+
+    if [[ "$1" == "vertical" ]]; then
+        sed -i 's/workspaces, 1, 5, wind, slide$/workspaces, 1, 5, wind, slidevert/' ~/.config/hypr/configs/UserAnimations.conf
+    else
+        sed -i 's/workspaces, 1, 5, wind, slidevert$/workspaces, 1, 5, wind, slide/' ~/.config/hypr/configs/UserAnimations.conf
+    fi
+
+    hyprctl reload
     "${SCRIPTSDIR}/wbrestart.sh" &
 }
 

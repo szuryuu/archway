@@ -1,0 +1,60 @@
+[
+{
+    "layer": "top",
+    "position": "left",
+    "width": 45,
+    "margin-top": 8,
+    "margin-bottom": 8,
+    "margin-left": 3,
+    "modules-center": ["hyprland/workspaces"],
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "一", "2": "二", "3": "三",
+            "4": "四", "5": "五", "6": "六",
+            "7": "七", "8": "八", "9": "九", "10": "十"
+        },
+        "persistent-workspaces": { "*": 5 },
+        "orientation": "vertical"
+    }
+},
+{
+    "layer": "top",
+    "position": "right",
+    "width": 45,
+    "margin-top": 8,
+    "margin-bottom": 8,
+    "margin-right": 3,
+    "modules-center": [
+        "clock",
+        "custom/separator",
+        "battery",
+        "custom/separator",
+        "pulseaudio",
+        "custom/separator",
+        "custom/power"
+    ],
+
+    "clock": {
+        "format": "%H\n%M",
+        "tooltip-format": "{:%A, %B %d, %Y}"
+    },
+    "battery": {
+        "format": "\n{capacity}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "pulseaudio": {
+        "format": "\n{volume}",
+        "format-muted": ""
+    },
+    "custom/power": {
+        "format": "",
+        "on-click": "wlogout"
+    },
+    "custom/separator": {
+        "format": "—",
+        "tooltip": false
+    }
+}
+]

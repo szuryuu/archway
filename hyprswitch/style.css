@@ -1,52 +1,56 @@
-* {
-    font-family: "JetBrainsMono Nerd Font";
-    font-size: 12px;
+window {
+    font-family: "JetBrainsMono Nerd Font", sans-serif;
+    font-size: 10px;
+    background-color: rgba(10, 10, 10, 0.90);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: #e0e0e0;
 }
 
-.window {
-    background-color: rgba(5, 5, 5, 0.95);
-    border-radius: 12px;
-    border: 1px solid #111111;
-}
-
-.workspace {
-    background-color: #0a0a0a;
-    border-radius: 8px;
-    padding: 4px 8px;
-    color: #444444;
-    font-size: 11px;
-}
-
-.workspace.active {
-    color: #86d1e9;
-}
-
-.client {
-    border-radius: 8px;
-    border: 1px solid transparent;
-    background-color: #0a0a0a;
-}
-
-.client:hover {
-    border-color: #333333;
-    background-color: #111111;
-}
-
-.client.active {
-    border-color: #86d1e9;
-    background-color: #111111;
-}
-
-.client-image {
+box {
+    padding: 4px;
     border-radius: 6px;
 }
 
-.client-title {
-    color: #666666;
-    font-size: 11px;
+#workspace {
+    background-color: transparent;
+    border-radius: 6px;
+    padding: 4px;
 }
 
-.client.active .client-title {
+#workspace.active {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+#client {
+    background-color: transparent;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    padding: 2px;
+    margin: 2px;
+}
+
+#client:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#client.active {
+    background-color: rgba(134, 209, 233, 0.15);
+    border: 1px solid #86d1e9;
+}
+
+image {
+    border-radius: 4px;
+}
+
+label {
+    color: #888888;
+    font-size: 10px;
+    margin-top: 2px;
+}
+
+#client.active label {
     color: #86d1e9;
+    font-weight: bold;
 }
