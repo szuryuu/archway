@@ -25,9 +25,12 @@ menu() {
 apply_config() {
     ln -sf "$waybar_layouts/$1" "$waybar_config"
 
-    if [[ "$1" == "vertical" ]]; then
+    # Auto swap style
+    if [[ "$1" == vertical* ]]; then
+        ln -sf "$waybar_styles/vertical.css" "$HOME/.config/waybar/style.css"
         sed -i 's/workspaces, 1, 5, wind, slide$/workspaces, 1, 5, wind, slidevert/' ~/.config/hypr/configs/UserAnimations.conf
     else
+        ln -sf "$waybar_styles/default.css" "$HOME/.config/waybar/style.css"
         sed -i 's/workspaces, 1, 5, wind, slidevert$/workspaces, 1, 5, wind, slide/' ~/.config/hypr/configs/UserAnimations.conf
     fi
 
