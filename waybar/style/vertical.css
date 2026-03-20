@@ -3,7 +3,7 @@
     border-radius: 0;
     font-family: "JetBrainsMono Nerd Font";
     font-weight: 700;
-    font-size: 14px;
+    font-size: 13px;
     min-height: 0;
 }
 
@@ -12,26 +12,52 @@ window#waybar {
 }
 
 .modules-top, .modules-center, .modules-bottom {
-    background-color: rgba(10, 10, 10, 0.85);
+    background-color: rgba(30, 31, 37, 0.75);
     border-radius: 20px;
     padding: 8px 4px;
-    margin: 0;
+    margin: 5px 0;
 }
 
-/* Clock */
+/* --- MODULE COLORS --- */
+#idle_inhibitor, #clock, #tray,
+#custom-notification, #battery,
+#pulseaudio, #custom-power {
+    color: #c0c6dc;
+    padding: 6px 4px;
+}
+
+#idle_inhibitor.activated {
+    color: #39FF14;
+}
+
 #clock {
-    color: #e0e0e0;
+    color: #e2e2e9;
     font-size: 11px;
     font-weight: 900;
-    padding: 6px 0;
 }
 
-/* Workspaces */
+#custom-power:hover {
+    color: #b0c6ff;
+}
+
+#custom-notification:hover {
+    color: #b0c6ff;
+}
+
+/* --- SEPARATOR LINE --- */
+#custom-separator {
+    color: #8f9099;
+    opacity: 0.4;
+    padding: 0 2px;
+    font-weight: 100;
+}
+
+/* --- WORKSPACES --- */
 #workspaces button {
     font-family: "Noto Serif CJK JP", serif;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 900;
-    color: #333333;
+    color: #8f9099;
     padding: 5px 2px;
     background: transparent;
     min-width: 0;
@@ -39,42 +65,36 @@ window#waybar {
 }
 
 #workspaces button:hover {
-    color: #86d1e9;
+    color: #b0c6ff;
     background: transparent;
     box-shadow: none;
+    text-shadow: none;
 }
 
 #workspaces button.active {
-    color: #050505;
-    background-color: rgba(134, 209, 233, 0.8);
+    color: #121318;
+    background-color: rgba(217, 226, 255, 0.75);
     border-radius: 9px;
-    margin: 0 4px;
+    padding: 5px 8px;
+    margin: 4px 2px;
 }
 
-/* Icons */
-#battery, #pulseaudio, #custom-power,
-#custom-notification, #tray {
-    color: #444444;
-    padding: 6px 0;
-    font-size: 14px;
-}
-
+/* --- BATTERY STATES --- */
 #battery.charging {
-    color: #86d1e9;
+    color: #b0c6ff;
 }
 
 #battery.critical:not(.charging) {
-    color: #ff3333;
+    color: #ffb4ab;
 }
 
+/* --- PULSEAUDIO --- */
 #pulseaudio.muted {
-    color: #333333;
+    color: #44464f;
 }
 
-#custom-power:hover {
-    color: #86d1e9;
-}
-
-#custom-notification:hover {
-    color: #86d1e9;
+/* --- ALIGN ICON-ONLY MODULES --- */
+#custom-notification,
+#custom-power {
+    padding: 6px 14px;
 }

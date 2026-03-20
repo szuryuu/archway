@@ -3,69 +3,112 @@
     "layer": "top",
     "position": "left",
     "width": 45,
+    "height": 0,
     "margin-top": 8,
     "margin-bottom": 8,
     "margin-left": 3,
-    "modules-top": ["clock", "idle_inhibitor"],
-    "modules-center": ["hyprland/workspaces"],
-    "modules-bottom": ["tray"],
+    "modules-left": ["group/top"],
+    "modules-center": ["group/middle"],
+    "modules-right": ["group/bottom"],
 
-    "clock": {
-        "format": "%H\n%M",
-        "tooltip-format": "{:%A\n%B %d, %Y}"
+    "group/top": {
+        "orientation": "inherit",
+        "modules": ["idle_inhibitor", "tray"]
     },
+    "group/middle": {
+        "orientation": "inherit",
+        "modules": ["hyprland/window"]
+    },
+    "group/bottom": {
+        "orientation": "inherit",
+        "modules": ["network", "pulseaudio", "battery"]
+    },
+
     "idle_inhibitor": {
         "format": "{icon}",
-        "format-icons": {
-            "activated": "●",
-            "deactivated": "○"
-        }
+        "format-icons": { "activated": "●", "deactivated": "○" }
     },
-    "hyprland/workspaces": {
-        "format": "{icon}",
-        "format-icons": {
-            "1": "一", "2": "二", "3": "三",
-            "4": "四", "5": "五", "6": "六",
-            "7": "七", "8": "八", "9": "九", "10": "十"
-        },
-        "persistent-workspaces": { "*": 5 }
+    "tray": { "icon-size": 14, "spacing": 10 },
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 20,
+        "separate-outputs": true,
+        "rotate": 90
     },
-    "tray": {
-        "icon-size": 14,
-        "spacing": 6
-    }
+    "network": {
+        "format-wifi": "    {essid}",
+        "format-ethernet": "    LAN",
+        "format-disconnected": "    Off",
+        "tooltip-format": "{essid} ({signalStrength}%)\n{ipaddr}",
+        "rotate": 90
+    },
+    "pulseaudio": {
+        "format": "    {volume}%",
+        "format-muted": "    Mute",
+        "tooltip-format": "{volume}%",
+        "on-click": "pavucontrol",
+        "rotate": 90
+    },
+    "battery": {
+        "format": "    {capacity}%",
+        "format-charging": "    {capacity}%",
+        "tooltip-format": "{capacity}%",
+        "rotate": 90
+    },
 },
 {
     "layer": "top",
     "position": "right",
     "width": 45,
+    "height": 0,
     "margin-top": 8,
     "margin-bottom": 8,
     "margin-right": 3,
-    "modules-top": ["custom/notification", "battery"],
-    "modules-center": ["pulseaudio"],
-    "modules-bottom": ["custom/power"],
+    "modules-left": ["group/top"],
+    "modules-center": ["group/middle"],
+    "modules-right": ["group/bottom"],
 
+    "group/top": {
+        "orientation": "inherit",
+        "modules": ["hyprland/workspaces"]
+    },
+    "group/middle": {
+        "orientation": "inherit",
+        "modules": ["clock"]
+    },
+    "group/bottom": {
+        "orientation": "inherit",
+        "modules": ["custom/notification", "custom/power"]
+    },
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "一", "2": "二", "3": "三", "4": "四", "5": "五",
+            "6": "六", "7": "七", "8": "八", "9": "九", "10": "十"
+        },
+        "persistent-workspaces": { "*": 5 }
+    },
+    "clock": {
+        "interval": 1,
+        "format": "{:%I:%M %p}",
+        "tooltip-format": "{:%A, %B %d, %Y}",
+        "rotate": 270,
+        "min-length": 12
+    },
     "custom/notification": {
-        "format": "",
-        "on-click": "swaync-client -t -sw"
-    },
-    "battery": {
-        "format": "{icon}",
-        "format-charging": "󱐋",
-        "format-icons": ["", "", "", "", ""],
-        "tooltip-format": "{capacity}%"
-    },
-    "pulseaudio": {
-        "format": "{icon}",
-        "format-muted": "󰝟",
-        "format-icons": { "default": ["", "", ""] },
-        "tooltip-format": "{volume}%",
-        "on-click": "pavucontrol"
+        "format": "",
+        "on-click": "swaync-client -t -sw",
+        "tooltip": false,
+        "rotate": 0,
+        "min-length": 3
     },
     "custom/power": {
-        "format": "",
-        "on-click": "wlogout"
+        "format": "",
+        "on-click": "wlogout",
+        "rotate": 0,
+        "min-length": 2
     }
 }
 ]
+
