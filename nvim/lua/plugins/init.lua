@@ -72,5 +72,37 @@ return {
   -- 		},
   -- 	},
   -- },
+  {
+  "CopilotC-Nvim/CopilotChat.nvim",
+  lazy = false,
+  dependencies = {
+    "zbirenbaum/copilot.lua",
+    "nvim-lua/plenary.nvim",
+  },
+  config = function()
+    require("CopilotChat").setup()
+  end,
+},
+  
+  {
+  "zbirenbaum/copilot.lua",
+  event = "InsertEnter",
+  config = function()
+    require("copilot").setup({
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+        keymap = {
+          accept = "<C-l>",
+          accept_word = "<C-j>",
+          dismiss = "<C-]>",
+          next = "<M-]>",
+          prev = "<M-[>",
+        },
+      },
+      panel = { enabled = false }, 
+    })
+  end,
+},
 
 }
