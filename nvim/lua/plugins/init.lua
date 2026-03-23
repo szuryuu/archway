@@ -2,7 +2,7 @@ return {
   { import = "nvchad.blink.lazyspec" },
   {
     "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
+    event = "BufWritePre",
     opts = require "configs.conform",
   },
 
@@ -44,7 +44,7 @@ return {
       require "configs.discord"
     end,
   },
-  { "nvchad/volt",     lazy = true },
+  { "nvchad/volt", lazy = true },
   {
     "nvchad/minty",
     lazy = true,
@@ -53,12 +53,11 @@ return {
     end,
   },
 
-  { "nvchad/menu",     lazy = true },
+  { "nvchad/menu", lazy = true },
 
   { "nvchad/showkeys", cmd = "ShowkeysToggle", opts = { position = "top-center" } },
 
-  { "nvchad/timerly",  cmd = "TimerlyToggle" },
-
+  { "nvchad/timerly", cmd = "TimerlyToggle" },
 
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
@@ -73,36 +72,51 @@ return {
   -- 	},
   -- },
   {
-  "CopilotC-Nvim/CopilotChat.nvim",
-  lazy = false,
-  dependencies = {
-    "zbirenbaum/copilot.lua",
-    "nvim-lua/plenary.nvim",
+    "CopilotC-Nvim/CopilotChat.nvim",
+    lazy = false,
+    dependencies = {
+      "zbirenbaum/copilot.lua",
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      require("CopilotChat").setup()
+    end,
   },
-  config = function()
-    require("CopilotChat").setup()
-  end,
-},
-  
+
   {
-  "zbirenbaum/copilot.lua",
-  event = "InsertEnter",
-  config = function()
-    require("copilot").setup({
-      suggestion = {
-        enabled = true,
-        auto_trigger = true,
-        keymap = {
-          accept = "<C-l>",
-          accept_word = "<C-j>",
-          dismiss = "<C-]>",
-          next = "<M-]>",
-          prev = "<M-[>",
+    "zbirenbaum/copilot.lua",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup {
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          keymap = {
+            accept = "<C-l>",
+            accept_word = "<C-j>",
+            dismiss = "<C-]>",
+            next = "<M-]>",
+            prev = "<M-[>",
+          },
+        },
+        panel = { enabled = false },
+      }
+    end,
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = {
+      defaults = {
+        file_ignore_patterns = {
+          "node_modules/",
+          ".git/",
+          "dist/",
+          "build/",
+          "target/", -- rust
+          "vendor/", -- go
+          ".terraform/", -- terraform
         },
       },
-      panel = { enabled = false }, 
-    })
-  end,
-},
-
+    },
+  },
 }
