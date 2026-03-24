@@ -79,7 +79,9 @@ return {
       "nvim-lua/plenary.nvim",
     },
     config = function()
-      require("CopilotChat").setup()
+      require("CopilotChat").setup {
+        model = "gpt-5.1",
+      }
     end,
   },
 
