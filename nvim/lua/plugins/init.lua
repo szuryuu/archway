@@ -106,6 +106,25 @@ return {
     end,
   },
   {
+    "yetone/avante.nvim",
+    lazy = false,
+    build = "make",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+    },
+    config = function()
+      require("avante").setup {
+        provider = "copilot",
+        providers = {
+          copilot = {
+            model = "gpt-5.1",
+          },
+        },
+      }
+    end,
+  },
+  {
     "nvim-telescope/telescope.nvim",
     opts = {
       defaults = {
