@@ -17,11 +17,23 @@ local options = {
     terraform = { "terraform_fmt" },
     sh = { "shfmt" },
     bash = { "shfmt" },
-    dockerfile = { "dockfmt" },
+    php = { "php_cs_fixer" }, -- Vanilla PHP
   },
   format_on_save = {
     timeout_ms = 500,
     lsp_fallback = true,
+  },
+  formatters = {
+    php_cs_fixer = {
+      env = {
+        PHP_CS_FIXER_IGNORE_ENV = "1",
+      },
+      args = {
+        "--cache-file=/tmp/.php-cs-fixer.cache",
+        "fix",
+        "$FILENAME",
+      },
+    },
   },
 }
 return options
