@@ -11,7 +11,7 @@ local servers = {
   "terraform",
   "dockerls",
   "yamlls",
-  "phpactor",
+  "intelephense",
 }
 vim.lsp.enable(servers)
 

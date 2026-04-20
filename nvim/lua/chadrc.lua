@@ -58,12 +58,12 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 })
 
 M.ui = {
-  theme = "onedark", 
-  transparency = false, 
-  
+  theme = "onedark",
+  transparency = false,
+
   statusline = {
-    theme = "vscode_colored", 
-    separator_style = "block", 
+    theme = "vscode_colored",
+    separator_style = "block",
     order = { "mode", "file", "git", "diagnostics", "lsp_msg", "%=", "cwd", "cursor" },
   },
 }
@@ -138,7 +138,7 @@ M.ui = {
 -- ⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⡆⠀⠀⠀⠀⠀⠀⠀⢀⠟
 -- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 -- ⠀⠀⠀⠀⠀⠀⠂⠂⠒⠀⠒⠐⠂⠂⠀⠀⠀⠀⠀⠀⠀⠀
--- https://emojicombos.com/dragon 
+-- https://emojicombos.com/dragon
 
 M.nvdash = {
   load_on_startup = true,
@@ -168,98 +168,98 @@ M.nvdash = {
 
 M.base46 = {
   theme = "onedark",
-  
+
   changed_themes = {
     onedark = {
       base_16 = {
-        base00 = "#050505", 
-        base01 = "#0a0a0a", 
-        base02 = "#111111", 
-        base03 = "#333333", 
-        base04 = "#555555", 
-        base05 = "#e0e0e0", 
-        base06 = "#f0f0f0", 
+        base00 = "#050505",
+        base01 = "#0a0a0a",
+        base02 = "#111111",
+        base03 = "#333333",
+        base04 = "#555555",
+        base05 = "#e0e0e0",
+        base06 = "#f0f0f0",
         base07 = "#ffffff",
-        base08 = "#e0e0e0", 
-        base09 = "#86d1e9", 
-        base0A = "#86d1e9", 
-        base0B = "#666666", 
-        base0C = "#86d1e9", 
-        base0D = "#86d1e9", 
-        base0E = "#86d1e9", 
-        base0F = "#86d1e9", 
+        base08 = "#e0e0e0",
+        base09 = "#86d1e9",
+        base0A = "#86d1e9",
+        base0B = "#666666",
+        base0C = "#86d1e9",
+        base0D = "#86d1e9",
+        base0E = "#86d1e9",
+        base0F = "#86d1e9",
       },
       base_30 = {
-        white         = "#e0e0e0",
-        darker_black  = "#020202",
-        black         = "#050505", 
-        black2        = "#0a0a0a",
-        one_bg        = "#0a0a0a",
-        one_bg2       = "#111111",
-        one_bg3       = "#1a1a1a",
-        grey          = "#444444",
-        grey_fg       = "#555555",
-        grey_fg2      = "#666666",
-        light_grey    = "#888888",
-        red           = "#86d1e9",
-        baby_pink     = "#86d1e9",
-        pink          = "#86d1e9",
-        line          = "#1a1a1a", 
-        green         = "#445544",
+        white = "#e0e0e0",
+        darker_black = "#020202",
+        black = "#050505",
+        black2 = "#0a0a0a",
+        one_bg = "#0a0a0a",
+        one_bg2 = "#111111",
+        one_bg3 = "#1a1a1a",
+        grey = "#444444",
+        grey_fg = "#555555",
+        grey_fg2 = "#666666",
+        light_grey = "#888888",
+        red = "#86d1e9",
+        baby_pink = "#86d1e9",
+        pink = "#86d1e9",
+        line = "#1a1a1a",
+        green = "#445544",
         vibrant_green = "#86d1e9",
-        blue          = "#86d1e9",
-        nord_blue     = "#86d1e9",
-        yellow        = "#ccaa00",
-        sun           = "#ccaa00",
-        purple        = "#86d1e9",
-        cyan          = "#86d1e9",
-        teal          = "#86d1e9",
-        orange        = "#86d1e9",
-        cyan_turq     = "#86d1e9",
+        blue = "#86d1e9",
+        nord_blue = "#86d1e9",
+        yellow = "#ccaa00",
+        sun = "#ccaa00",
+        purple = "#86d1e9",
+        cyan = "#86d1e9",
+        teal = "#86d1e9",
+        orange = "#86d1e9",
+        cyan_turq = "#86d1e9",
         statusline_bg = "#0a0a0a",
-        lightbg       = "#111111",
-        pmenu_bg      = "#86d1e9",
-        folder_bg     = "#86d1e9",
+        lightbg = "#111111",
+        pmenu_bg = "#86d1e9",
+        folder_bg = "#86d1e9",
       },
     },
   },
 
   hl_override = {
     -- Background & Borders
-    Normal            = { bg = "#050505", fg = "#e0e0e0" },
-    NormalNC          = { bg = "#050505", fg = "#666666" }, 
-    NvimTreeNormal    = { bg = "#050505" }, 
-    NvimTreeNormalNC  = { bg = "#050505" },
-    
+    Normal = { bg = "#050505", fg = "#e0e0e0" },
+    NormalNC = { bg = "#050505", fg = "#666666" },
+    NvimTreeNormal = { bg = "#050505" },
+    NvimTreeNormalNC = { bg = "#050505" },
+
     -- Borders
-    VertSplit     = { fg = "#333333", bg = "#050505" },
-    WinSeparator  = { fg = "#333333", bg = "#050505" },
-    
+    VertSplit = { fg = "#333333", bg = "#050505" },
+    WinSeparator = { fg = "#333333", bg = "#050505" },
+
     -- Cursor
-    Cursor      = { bg = "#86d1e9", fg = "#000000" },
-    CursorLine  = { bg = "#0f0f0f" }, 
-    
+    Cursor = { bg = "#86d1e9", fg = "#000000" },
+    CursorLine = { bg = "#0f0f0f" },
+
     -- Folders NvimTree
-    NvimTreeFolderIcon        = { fg = "#86d1e9" },
-    NvimTreeFolderName        = { fg = "#e0e0e0" },
-    NvimTreeOpenedFolderName  = { fg = "#86d1e9", bold = true },
+    NvimTreeFolderIcon = { fg = "#86d1e9" },
+    NvimTreeFolderName = { fg = "#e0e0e0" },
+    NvimTreeOpenedFolderName = { fg = "#86d1e9", bold = true },
     NvimTreeRootFolder = { fg = "#86d1e9", bold = true },
-    
+
     -- Statusline Modules
-    St_NormalMode = { bg = "#86d1e9", fg = "#000000", bold = true }, 
-    St_InsertMode = { bg = "#e0e0e0", fg = "#000000", bold = true }, 
-    St_VisualMode = { bg = "#555555", fg = "#ffffff", bold = true }, 
-    
+    St_NormalMode = { bg = "#86d1e9", fg = "#000000", bold = true },
+    St_InsertMode = { bg = "#e0e0e0", fg = "#000000", bold = true },
+    St_VisualMode = { bg = "#555555", fg = "#ffffff", bold = true },
+
     -- Syntax Overrides
-    Comment   = { fg = "#444444", italic = true },
-    String    = { fg = "#ccaa00" }, 
-    Function  = { fg = "#86d1e9", bold = true }, 
-    Keyword   = { fg = "#86d1e9" }, 
-    Type      = { fg = "#e0e0e0" }, 
-    
+    Comment = { fg = "#444444", italic = true },
+    String = { fg = "#ccaa00" },
+    Function = { fg = "#86d1e9", bold = true },
+    Keyword = { fg = "#86d1e9" },
+    Type = { fg = "#e0e0e0" },
+
     -- Pmenu
-    Pmenu     = { bg = "#0a0a0a", fg = "#e0e0e0" },
-    PmenuSel  = { bg = "#86d1e9", fg = "#000000" }, 
+    Pmenu = { bg = "#0a0a0a", fg = "#e0e0e0" },
+    PmenuSel = { bg = "#86d1e9", fg = "#000000" },
   },
 }
 

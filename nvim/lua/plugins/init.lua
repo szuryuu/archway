@@ -118,7 +118,7 @@ return {
         provider = "copilot",
         providers = {
           copilot = {
-            model = "gpt-5.1",
+            model = "gpt-5.3-codex",
           },
         },
       }
