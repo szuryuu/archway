@@ -80,7 +80,16 @@ return {
     },
     config = function()
       require("CopilotChat").setup {
-        model = "gpt-5.1",
+        model = "gpt-5.2",
+        system_prompt = function()
+          local f = io.open(vim.fn.getcwd() .. "/AGENTS.md", "r")
+          if f then
+            local content = f:read "*all"
+            f:close()
+            return content
+          end
+          return ""
+        end,
       }
     end,
   },
@@ -120,6 +129,9 @@ return {
           copilot = {
             model = "gpt-5.3-codex",
           },
+        },
+        behaviour = {
+          auto_apply_diff_after_generation = false,
         },
       }
     end,

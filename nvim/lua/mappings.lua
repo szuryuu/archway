@@ -6,6 +6,7 @@ local map = vim.keymap.set
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
+map("n", "<Tab>", "<cmd>b#<CR>", { desc = "Switch to last buffer" })
 
 map("n", "<C-t>", function()
   require("minty.shades").open { border = false }
