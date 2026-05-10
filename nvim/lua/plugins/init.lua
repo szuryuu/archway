@@ -152,4 +152,9 @@ return {
       },
     },
   },
+  -- k8s
+  {
+    "b0o/schemastore.nvim",
+    lazy = true,
+  },
 }

@@ -1,12 +1,12 @@
-require("hlchunk").setup({
+require("hlchunk").setup {
   chunk = {
-        enable = true,
+    enable = true,
     chars = {
-        horizontal_line = "─",
-        vertical_line = "│",
-        left_top = "┌",
-        left_bottom = "└",
-        right_arrow = "─",
+      horizontal_line = "─",
+      vertical_line = "│",
+      left_top = "┌",
+      left_bottom = "└",
+      right_arrow = "─",
     },
-  }
-})
+  },
+}

@@ -16,46 +16,46 @@ opt.relativenumber = true
 o.laststatus = 3 -- Global statusline (Void Style)
 
 -- FIX: Gunakan 'opt' bukan 'o' karena nilainya adalah Table
-opt.fillchars = { eob = " " } 
+opt.fillchars = { eob = " " }
 
 o.cursorline = true
 
 -- --- RONIN PALETTE (VOID & BLOOD) ---
 local colors = {
-  void    = "#050505", -- Main Background
-  module  = "#111111", -- Module Background
-  text    = "#e0e0e0",
-  dim     = "#444444",
-  blood   = "#b30000", 
-  gold    = "#ccaa00", -- Secondary Accent
-  warn    = "#e5c07b",
-  info    = "#61afef",
-  hint    = "#98c379",
+  void = "#050505", -- Main Background
+  module = "#111111", -- Module Background
+  text = "#e0e0e0",
+  dim = "#444444",
+  blood = "#b30000",
+  gold = "#ccaa00", -- Secondary Accent
+  warn = "#e5c07b",
+  info = "#61afef",
+  hint = "#98c379",
 }
 
 local highlights = {
-  Normal          = { fg = colors.text, bg = colors.void },
-  Separator       = { fg = colors.module, bg = colors.void }, 
-  Separator2      = { fg = colors.dim, bg = colors.module },
-  
-  ModeText        = { fg = colors.blood, bg = colors.module, bold = true },
-  PathText        = { fg = colors.text, bg = colors.module, bold = true },
-  FileText        = { fg = colors.text, bg = colors.module },
-  FileType        = { fg = colors.blood, bg = colors.module, bold = true },
-  
-  BranchName      = { fg = colors.gold, bg = colors.module, bold = true },
-  LineText        = { fg = colors.blood, bg = colors.module },
-  ColumnText      = { fg = colors.text, bg = colors.module },
-  PercentageText  = { fg = colors.text, bg = colors.module },
-  TotalLineText   = { fg = colors.dim, bg = colors.module },
-  
-  DiagnosticsText = { fg = colors.dim, bg = colors.module },
-  LSPColor        = { fg = colors.gold, bg = colors.module, bold = true },
+  Normal = { fg = colors.text, bg = colors.void },
+  Separator = { fg = colors.module, bg = colors.void },
+  Separator2 = { fg = colors.dim, bg = colors.module },
 
-  DiagError       = { fg = colors.blood, bg = colors.module },
-  DiagWarn        = { fg = colors.warn, bg = colors.module },
-  DiagInfo        = { fg = colors.info, bg = colors.module },
-  DiagHint        = { fg = colors.hint, bg = colors.module },
+  ModeText = { fg = colors.blood, bg = colors.module, bold = true },
+  PathText = { fg = colors.text, bg = colors.module, bold = true },
+  FileText = { fg = colors.text, bg = colors.module },
+  FileType = { fg = colors.blood, bg = colors.module, bold = true },
+
+  BranchName = { fg = colors.gold, bg = colors.module, bold = true },
+  LineText = { fg = colors.blood, bg = colors.module },
+  ColumnText = { fg = colors.text, bg = colors.module },
+  PercentageText = { fg = colors.text, bg = colors.module },
+  TotalLineText = { fg = colors.dim, bg = colors.module },
+
+  DiagnosticsText = { fg = colors.dim, bg = colors.module },
+  LSPColor = { fg = colors.gold, bg = colors.module, bold = true },
+
+  DiagError = { fg = colors.blood, bg = colors.module },
+  DiagWarn = { fg = colors.warn, bg = colors.module },
+  DiagInfo = { fg = colors.info, bg = colors.module },
+  DiagHint = { fg = colors.hint, bg = colors.module },
 }
 
 for group, opts in pairs(highlights) do
@@ -65,14 +65,14 @@ end
 _G.RecolorMode = function()
   local mode = vim.fn.mode()
   local color_map = {
-    n     = { fg = colors.blood, bg = colors.module }, 
-    i     = { fg = "#ffffff", bg = colors.module },    
-    R     = { fg = colors.gold, bg = colors.module },  
-    v     = { fg = "#ff5555", bg = colors.module },    
-    V     = { fg = "#ff5555", bg = colors.module },
+    n = { fg = colors.blood, bg = colors.module },
+    i = { fg = "#ffffff", bg = colors.module },
+    R = { fg = colors.gold, bg = colors.module },
+    v = { fg = "#ff5555", bg = colors.module },
+    V = { fg = "#ff5555", bg = colors.module },
     ["\22"] = { fg = "#ff5555", bg = colors.module },
-    c     = { fg = colors.text, bg = colors.module },
-    t     = { fg = colors.text, bg = colors.module },
+    c = { fg = colors.text, bg = colors.module },
+    t = { fg = colors.text, bg = colors.module },
   }
 
   local hl = color_map[mode]
@@ -129,10 +129,18 @@ _G.diagnostics_color = function()
   local hints = #vim.diagnostic.get(M.stbufnr(), { severity = vim.diagnostic.severity.HINT })
 
   local parts = {}
-  if err > 0 then table.insert(parts, "%#DiagError# " .. err .. " %*") end
-  if warn > 0 then table.insert(parts, "%#DiagWarn# " .. warn .. " %*") end
-  if info > 0 then table.insert(parts, "%#DiagInfo#󰋼 " .. info .. " %*") end
-  if hints > 0 then table.insert(parts, "%#DiagHint#󰛩 " .. hints .. " %*") end
+  if err > 0 then
+    table.insert(parts, "%#DiagError# " .. err .. " %*")
+  end
+  if warn > 0 then
+    table.insert(parts, "%#DiagWarn# " .. warn .. " %*")
+  end
+  if info > 0 then
+    table.insert(parts, "%#DiagInfo#󰋼 " .. info .. " %*")
+  end
+  if hints > 0 then
+    table.insert(parts, "%#DiagHint#󰛩 " .. hints .. " %*")
+  end
 
   if #parts == 0 then
     return "%#DiagnosticsText# %*"
@@ -157,7 +165,7 @@ _G.HandleColumnGap = function()
 end
 
 -- STATUSLINE LAYOUT (VOID STYLE)
-vim.opt.statusline = table.concat({
+vim.opt.statusline = table.concat {
   "%{%v:lua.RecolorMode()%}",
 
   -- Left Module (Mode)
@@ -191,4 +199,4 @@ vim.opt.statusline = table.concat({
   "%#Separator2#|",
   "%#PercentageText# %p%% ",
   "%#Separator#█",
-})
+}
