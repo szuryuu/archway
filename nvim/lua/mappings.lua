@@ -1,7 +1,5 @@
 require "nvchad.mappings"
 
--- add yours here
-
 local map = vim.keymap.set
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
@@ -24,6 +22,9 @@ end, {})
 
 -- map("n", "<Space>e", "<cmd>NvimTreeToggle<CR>", { desc = "toggle nvimtree" })
 -- map("n", "<Space>h", "<cmd>ToggleTerm direction=float<CR>", { desc = "floating terminal" })
+
+-- Save without formatter (for team PRs / clean diffs)
+map("n", "<leader>W", "<cmd>noautocmd w<CR>", { desc = "Save without formatting" })
 
 -- Move line up/down
 map("n", "<A-Down>", ":m .+1<CR>==", { desc = "Move line down" })
