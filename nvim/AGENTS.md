@@ -179,3 +179,14 @@ nvim --headless +qa
 - Validation run: `nvim --headless +qa` (completed with an existing deprecation warning: `vim.lsp.with() is deprecated`).
 
 - `indent-blankline` — intentionally `enabled = false` (replaced by hlchunk)
+
+### 2026-05-10
+
+- Added `b0o/schemastore.nvim` plugin (`lazy = true`) to `lua/plugins/init.lua` for YAML schema validation.
+- Added `helm_ls` to LSP server list in `lua/configs/lspconfig.lua`.
+- Configured `yamlls` in `lspconfig.lua` with SchemaStore integration and custom k8s manifest schema patterns (`*.k8s.yaml`, `k8s/**/*.yaml`, `manifests/**/*.yaml`).
+- Configured `helm_ls` to disable its internal yamlls to avoid conflict.
+- Replaced deprecated `vim.lsp.with()` in `chadrc.lua` with `vim.diagnostic.config { virtual_text = false }`.
+- Ran `stylua lua/` to fix formatting violations in `chunk.lua`, `discord.lua`, and `options.lua`.
+- Validation: `nvim --headless +qa` — clean, no warnings.
+- Pending: `:MasonInstall yaml-language-server helm-ls` (must be run manually inside Neovim).
