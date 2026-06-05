@@ -71,49 +71,7 @@ return {
   -- 		},
   -- 	},
   -- },
-  {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    lazy = false,
-    dependencies = {
-      "zbirenbaum/copilot.lua",
-      "nvim-lua/plenary.nvim",
-    },
-    config = function()
-      require("CopilotChat").setup {
-        model = "gpt-5.2",
-        system_prompt = function()
-          local f = io.open(vim.fn.getcwd() .. "/AGENTS.md", "r")
-          if f then
-            local content = f:read "*all"
-            f:close()
-            return content
-          end
-          return ""
-        end,
-      }
-    end,
-  },
 
-  {
-    "zbirenbaum/copilot.lua",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup {
-        suggestion = {
-          enabled = true,
-          auto_trigger = true,
-          keymap = {
-            accept = "<C-l>",
-            accept_word = "<C-j>",
-            dismiss = "<C-]>",
-            next = "<M-]>",
-            prev = "<M-[>",
-          },
-        },
-        panel = { enabled = false },
-      }
-    end,
-  },
   {
     "yetone/avante.nvim",
     lazy = false,
@@ -127,7 +85,7 @@ return {
         provider = "copilot",
         providers = {
           copilot = {
-            model = "gpt-5.3-codex",
+            model = "gpt-5.2-codex",
           },
         },
         behaviour = {
