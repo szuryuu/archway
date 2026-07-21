@@ -5,10 +5,10 @@ font_family      Monocraft
 bold_font        auto
 italic_font      auto
 bold_italic_font auto
-font_size        11.0
+font_size        13.0
 
-# Padding 6px
-window_padding_width 6
+# Padding 20px
+window_padding_width 20
 
 # Opacity
 background_opacity 0.95

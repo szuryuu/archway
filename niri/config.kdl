@@ -1,0 +1,218 @@
+// ============================================================
+// Niri config — migrated from Hyprland (szuryuu/archway)
+// ============================================================
+// NOTE: Letakkan di ~/.config/niri/config.kdl
+// Jalankan `niri validate` untuk cek syntax sebelum login
+
+// ============================================================
+// MONITOR
+// ============================================================
+output "eDP-1" {
+    mode "1366x768@60.003"
+    position x=0 y=0
+    scale 1.00
+}
+
+// ============================================================
+// ENVIRONMENT
+// ============================================================
+environment {
+    XCURSOR_SIZE "24"
+    XCURSOR_THEME "default"
+    DISPLAY ":0"  // disediakan oleh xwayland-satellite
+}
+
+// ============================================================
+// AUTOSTART
+// ============================================================
+// NOTE: awww → diganti swww (nama binary yang benar)
+// NOTE: hyprpolkitagent → diganti gnome-polkit (hyprland-specific)
+// NOTE: hypridle → tetap kompatibel dengan niri
+// NOTE: xwayland-satellite → wajib untuk zoom, opera, dll
+
+spawn-at-startup "xwayland-satellite"
+spawn-at-startup "nm-applet"
+spawn-at-startup "waybar"
+spawn-at-startup "bash" "-c" "~/.config/niri/start-wallpaper.sh"
+spawn-at-startup "blueman-applet"
+spawn-at-startup "swaync"
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+spawn-at-startup "hypridle"
+spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
+spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
+
+// ============================================================
+// INPUT
+// ============================================================
+input {
+    keyboard {
+        xkb {
+            layout "us"
+        }
+    }
+
+    touchpad {
+        natural-scroll
+        accel-speed 0.0
+        accel-profile "flat"
+        tap
+    }
+
+    mouse {
+        accel-speed 0.0
+        accel-profile "flat"
+    }
+}
+
+// ============================================================
+// LAYOUT (menggantikan general + decoration di hyprland)
+// ============================================================
+layout {
+    gaps 2
+
+    border {
+        width 0
+        active-color "#899296"
+        inactive-color "#40484b"
+    }
+
+    focus-ring {
+        off
+    }
+
+    default-column-width { proportion 0.5; }
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+}
+
+// ============================================================
+// WINDOW RULES
+// ============================================================
+// Rounding global
+window-rule {
+    geometry-corner-radius 0
+    clip-to-geometry true
+}
+
+// Inactive opacity (inactive_opacity = 0.8 dari hyprland)
+window-rule {
+    match is-focused=false
+    opacity 0.8
+}
+
+window-rule {
+    match is-focused=true
+    opacity 1.0
+}
+
+// Float untuk app tertentu (dari windowrules.conf hyprland)
+window-rule {
+    match app-id=r#"cheatsheet"#
+    open-floating true
+    default-column-width { fixed 1200; }
+    default-window-height { fixed 550; }
+}
+
+// ============================================================
+// BINDS
+// NOTE: hyprswitch diganti toggle-overview (built-in niri)
+// NOTE: Super+J (togglesplit) tidak ada padanannya di niri
+// NOTE: Super+P (pseudo) tidak ada padanannya di niri
+// ============================================================
+binds {
+    // -- Apps --
+    Super+Return { spawn "kitty"; }
+    Super+Shift+Return { spawn "kitty"; }  // bisa ditambah float via window-rule
+    Super+B { spawn "zen-browser"; }
+    Super+C { spawn "hyprpicker" "-a"; }
+    Super+D { spawn "bash" "-c" "rofi -show drun"; }
+    Super+E { spawn "thunar"; }
+    Super+Shift+E { spawn "kitty" "yazi"; }
+    Super+V { spawn "bash" "-c" "cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy"; }
+    Super+W { spawn "bash" "-c" "~/.config/hypr/scripts/wppicker.sh"; }
+    Super+L { spawn "bash" "-c" "~/.config/hypr/scripts/hyprlock.sh"; }
+    Super+Shift+S { spawn "bash" "-c" "~/.config/hypr/scripts/screenshot.sh"; }
+
+    // -- Cheatsheets --
+    Super+F1 { spawn "kitty" "--class" "cheatsheet" "-e" "~/.config/hypr/scripts/cheatsheet-nvim.sh"; }
+    Super+F2 { spawn "kitty" "--class" "cheatsheet" "-e" "~/.config/hypr/scripts/cheatsheet-hypr.sh"; }
+
+    // -- Window management --
+    Super+Q { close-window; }
+    Super+Shift+F { maximize-column; }
+    Super+Space { toggle-window-floating; }
+    Super+Shift+C { center-column; }
+
+    // -- Focus --
+    Super+Left  { focus-column-left; }
+    Super+Right { focus-column-right; }
+    Super+Up    { focus-window-up; }
+    Super+Down  { focus-window-down; }
+
+    // -- Move windows --
+    Super+Ctrl+Left  { move-column-left; }
+    Super+Ctrl+Right { move-column-right; }
+    Super+Ctrl+Up    { move-window-up; }
+    Super+Ctrl+Down  { move-window-down; }
+
+    // -- Resize --
+    Super+Shift+Left  { set-column-width "-5%"; }
+    Super+Shift+Right { set-column-width "+5%"; }
+    Super+Shift+Up    { set-window-height "-5%"; }
+    Super+Shift+Down  { set-window-height "+5%"; }
+
+    // -- Workspaces --
+    Super+1 { focus-workspace 1; }
+    Super+2 { focus-workspace 2; }
+    Super+3 { focus-workspace 3; }
+    Super+4 { focus-workspace 4; }
+    Super+5 { focus-workspace 5; }
+    Super+6 { focus-workspace 6; }
+    Super+7 { focus-workspace 7; }
+    Super+8 { focus-workspace 8; }
+    Super+9 { focus-workspace 9; }
+    Super+0 { focus-workspace 10; }
+
+    Super+Shift+1 { move-window-to-workspace 1; }
+    Super+Shift+2 { move-window-to-workspace 2; }
+    Super+Shift+3 { move-window-to-workspace 3; }
+    Super+Shift+4 { move-window-to-workspace 4; }
+    Super+Shift+5 { move-window-to-workspace 5; }
+    Super+Shift+6 { move-window-to-workspace 6; }
+    Super+Shift+7 { move-window-to-workspace 7; }
+    Super+Shift+8 { move-window-to-workspace 8; }
+    Super+Shift+9 { move-window-to-workspace 9; }
+    Super+Shift+0 { move-window-to-workspace 10; }
+
+    // -- Overview (pengganti hyprswitch) --
+    Super+Tab { toggle-overview; }
+
+    // -- Scroll workspaces --
+    Super+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+    Super+WheelScrollUp   cooldown-ms=150 { focus-workspace-up; }
+
+    // -- Mouse drag --
+
+    // -- Volume --
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "bash" "-c" "~/.config/hypr/scripts/volume.sh --inc"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "bash" "-c" "~/.config/hypr/scripts/volume.sh --dec"; }
+    XF86AudioMute        allow-when-locked=true { spawn "bash" "-c" "~/.config/hypr/scripts/volume.sh --toggle"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn "bash" "-c" "~/.config/hypr/scripts/volume.sh --toggle-mic"; }
+
+    // -- Brightness --
+    XF86MonBrightnessUp   allow-when-locked=true { spawn "bash" "-c" "~/.config/hypr/scripts/brightness.sh --inc"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "bash" "-c" "~/.config/hypr/scripts/brightness.sh --dec"; }
+
+    // -- Media --
+    XF86AudioNext  allow-when-locked=true { spawn "playerctl" "next"; }
+    XF86AudioPause allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    XF86AudioPlay  allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    XF86AudioPrev  allow-when-locked=true { spawn "playerctl" "previous"; }
+
+    // -- Exit niri --
+    Ctrl+Alt+Delete { quit; }
+}
