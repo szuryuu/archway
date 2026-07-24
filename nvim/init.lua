@@ -1,4 +1,5 @@
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
+vim.opt.rtp:append(vim.fn.stdpath "data" .. "/site")
 vim.g.mapleader = " "
 
 -- bootstrap lazy and all plugins

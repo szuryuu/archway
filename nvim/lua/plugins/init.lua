@@ -60,17 +60,34 @@ return {
   { "nvchad/timerly", cmd = "TimerlyToggle" },
 
   -- test new blink
-  -- { import = "nvchad.blink.lazyspec" },
+  { import = "nvchad.blink.lazyspec" },
 
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    build = ":TSUpdate",
+    lazy = false,
+    config = function()
+      require("nvim-treesitter").install {
+        "vim",
+        "lua",
+        "vimdoc",
+        "html",
+        "css",
+        "go",
+        "markdown",
+        "markdown_inline",
+      }
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "vim", "lua", "vimdoc", "html", "css", "go", "markdown" },
+        callback = function()
+          pcall(vim.treesitter.start) -- enable highlighting
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" -- enable indent
+        end,
+      })
+    end,
+  },
   {
     "yetone/avante.nvim",
     event = "VeryLazy",

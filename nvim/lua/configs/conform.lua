@@ -18,6 +18,8 @@ local options = {
     sh = { "shfmt" },
     bash = { "shfmt" },
     php = { "php_cs_fixer" }, -- Vanilla PHP
+    c = { "clang-format" },
+    cpp = { "clang-format" },
   },
   format_on_save = {
     timeout_ms = 500,
