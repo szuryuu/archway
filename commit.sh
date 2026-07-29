@@ -1,7 +1,6 @@
 #!/bin/bash
 
-add=$(git add .)
-commit=$(git commit -m "update")
+set -e
 
-"${add[@]}"
-"${commit[@]}"
+git add .
+git commit -m "update"
