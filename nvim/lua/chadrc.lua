@@ -18,22 +18,6 @@
 --   },
 -- }
 --
--- M.nvdash = {
---   load_on_startup = true,
---   header = {
---     "           ▄ ▄                   ",
---     "       ▄   ▄▄▄     ▄ ▄▄▄ ▄ ▄     ",
---     "       █ ▄ █▄█ ▄▄▄ █ █▄█ █ █     ",
---     "    ▄▄ █▄█▄▄▄█ █▄█▄█▄▄█▄▄█ █     ",
---     "  ▄ █▄▄█ ▄ ▄▄ ▄█ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄  ",
---     "  █▄▄▄▄ ▄▄▄ █ ▄ ▄▄▄ ▄ ▄▄▄ ▄ ▄ █ ▄",
---     "▄ █ █▄█ █▄█ █ █ █▄█ █ █▄█ ▄▄▄ █ █",
---     "█▄█ ▄ █▄▄█▄▄█ █ ▄▄█ █ ▄ █ █▄█▄█ █",
---     "    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█ █▄█▄▄▄█    ",
---     "",
---     "",
---   },
--- }
 -- M.ui = {
 --   tabufline = {
 --     enabled = false,
@@ -49,25 +33,6 @@
 --
 -- return M
 --
-
----@type ChadrcConfig
-local M = {}
-
-vim.diagnostic.config {
-  virtual_text = false,
-}
-
-M.ui = {
-  theme = "onedark",
-  transparency = false,
-
-  statusline = {
-    theme = "vscode_colored",
-    separator_style = "block",
-    order = { "mode", "file", "git", "diagnostics", "lsp_msg", "%=", "cwd", "cursor" },
-  },
-}
-
 -- M.nvdash = {
 --   load_on_startup = true,
 --   header = {
@@ -84,7 +49,6 @@ M.ui = {
 --     "",
 --   },
 -- }
---
 -- M.nvdash = {
 --   load_on_startup = true,
 --   header = {
@@ -139,6 +103,24 @@ M.ui = {
 -- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 -- ⠀⠀⠀⠀⠀⠀⠂⠂⠒⠀⠒⠐⠂⠂⠀⠀⠀⠀⠀⠀⠀⠀
 -- https://emojicombos.com/dragon
+
+---@type ChadrcConfig
+local M = {}
+
+vim.diagnostic.config {
+  virtual_text = false,
+}
+
+M.ui = {
+  theme = "onedark",
+  transparency = false,
+
+  statusline = {
+    theme = "vscode_colored",
+    separator_style = "block",
+    order = { "mode", "file", "git", "diagnostics", "lsp_msg", "%=", "cwd", "cursor" },
+  },
+}
 
 M.nvdash = {
   load_on_startup = true,
@@ -256,6 +238,14 @@ M.base46 = {
     Function = { fg = "#86d1e9", bold = true },
     Keyword = { fg = "#86d1e9" },
     Type = { fg = "#e0e0e0" },
+
+    -- Treesitter: function parameters & struct fields
+    -- (sebelumnya gak diatur eksplisit, jadi fallback ke warna Identifier/Normal
+    -- yang sama kayak Type, makanya parameter kelihatan nyaru)
+    ["@variable.parameter"] = { fg = "#ccaa00", italic = true },
+    ["@variable.member"] = { fg = "#e0e0e0", italic = true },
+    ["@property"] = { fg = "#e0e0e0", italic = true },
+    ["@field"] = { fg = "#e0e0e0", italic = true },
 
     -- Pmenu
     Pmenu = { bg = "#0a0a0a", fg = "#e0e0e0" },
