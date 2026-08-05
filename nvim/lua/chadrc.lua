@@ -237,14 +237,12 @@ M.base46 = {
     String = { fg = "#ccaa00" },
     Function = { fg = "#86d1e9", bold = true },
     Keyword = { fg = "#86d1e9" },
-    Type = { fg = "#e0e0e0" },
+    Type = { fg = "#8fbf8f" },
 
-    -- Treesitter: function parameters & struct fields
-    -- (sebelumnya gak diatur eksplisit, jadi fallback ke warna Identifier/Normal
-    -- yang sama kayak Type, makanya parameter kelihatan nyaru)
     ["@variable.parameter"] = { fg = "#ccaa00", italic = true },
     ["@variable.member"] = { fg = "#e0e0e0", italic = true },
     ["@property"] = { fg = "#e0e0e0", italic = true },
+    ["@module"] = { fg = "#5b7d88", italic = true },
     ["@field"] = { fg = "#e0e0e0", italic = true },
 
     -- Pmenu

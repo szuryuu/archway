@@ -144,4 +144,27 @@ return {
     "b0o/schemastore.nvim",
     lazy = true,
   },
+  -- WPM
+  {
+    "slowy07/mywpm.nvim",
+    event = "VeryLazy",
+    dependencies = "nvzone/volt",
+    config = function()
+      require("mywpm").setup {
+        notify_interval = 60 * 1000,
+        high = 60,
+        low = 15,
+        high_msg = "nice keep it up 🔥",
+        low_msg = "hahaha slowhand 🐌",
+        show_virtual_text = true,
+        notify = true,
+        update_time = 300,
+        virt_wpm = function(wpm)
+          return ("👨‍💻 Speed: %.0f WPM"):format(wpm)
+        end,
+        virt_wpm_pos = "right_align",
+        follow_cursor = true,
+      }
+    end,
+  },
 }
